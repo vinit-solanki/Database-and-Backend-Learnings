@@ -1,5 +1,14 @@
 Database -> Collection -> Document({})
 
+# Architecture:
+ |----------|    |----------|    |-----------------------------------------------|
+ | Frontend |===>| Backend  |===>|--->[Mongodb Server]<---(mongosh)              |    
+ |----------|    |----------|    |         ||                                    |
+                                 |         L==>[ Storage Engine(WildTIger)]      |
+                                 |             |                                 | 
+                                 |             |--->(JSON TO BSON)--->{Database} |
+                                 |-----------------------------------------------| 
+
 # Managing DBs and Collections:
 1. show dbs;  -> to view all the databases
 2. show collections; -> to view all the collections
