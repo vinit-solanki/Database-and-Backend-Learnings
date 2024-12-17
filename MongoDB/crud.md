@@ -1,6 +1,7 @@
 Database -> Collection -> Document({})
 
 # Architecture:
+```plaintext
  # |----------|    |----------|   |-----------------------------------------------|
  # | Frontend |===>| Backend  |==>|--->[Mongodb Server]<---(mongosh)              |    
  # |----------|    |----------|   |         ||                                    |
@@ -8,6 +9,7 @@ Database -> Collection -> Document({})
  #                                |             |                                 | 
  #                                |             |--->(JSON TO BSON)--->{Database} |
  #                                |-----------------------------------------------| 
+```
 
 # Managing DBs and Collections:
 1. show dbs;  -> to view all the databases
