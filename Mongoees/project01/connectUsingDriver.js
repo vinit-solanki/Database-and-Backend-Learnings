@@ -13,25 +13,23 @@ async function connectDB() {
     // Connect to MongoDB server
     await client.connect();
     console.log('Connected to MongoDB');
-
     // Get the database
     const db = client.db(dbName);
     console.log(`Connected to the database: ${dbName}`);
-
     // interact with the database, for example:
     const collection = db.collection('Products');
     const documents = await collection.find().toArray();
     console.log(documents);
-
   } catch (err) {
     console.error('Error connecting to MongoDB:', err);
   } finally {
+    // Disconnect with the Mongodb Server
     await client.close();
     console.log('MongoDB connection closed.');
   }
 }
 
-connectDB();
+// connectDB();
 
 async function insertProduct() {
   const db = client.db(dbName);
@@ -84,4 +82,21 @@ const deleteOutOfStock = async ()=>{
     client.close();
   }
 }
-deleteOutOfStock();
+// deleteOutOfStock();
+
+// Update product by id
+const updateProduct = async (id)=>{
+  try{
+    const db = client.db(dbName);
+    const products = db.collection('Products');
+    const product = await products.findOne({ _id: `${id}` });
+    console.log("Product:", product);
+    await products.updateOne({ _id: `${id}` },{$set:{ rating: 3.7 }});
+  } catch(err){
+    console.error("Error:",err);
+  } finally{
+    console.log("Disconnecting DB...");
+    client.close();
+  }
+}
+// updateProduct(105);
