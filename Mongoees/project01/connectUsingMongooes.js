@@ -65,4 +65,24 @@ const getProduct = async (name)=>{
     mongoose.connection.close();
   }
 }
-getProduct('Laptop');
+// getProduct('Laptop');
+
+const addSales = async (name)=>{
+  try{
+    await mongoose.connect(uri);
+    const result = await Product.updateMany({ name: name },{$set: { onSale: true }});
+    console.log("Added onSale field: ", result);
+  }
+  catch(err){
+    console.log(err);
+  } finally{
+    mongoose.connection.close();
+  }
+}
+addSales("Laptop");
+Product.pre('save',async function(){
+  await console.log("About to add sales...")  
+})
+Product.post('save',async function(){
+  await console.log("Added sales filed...")  
+})
