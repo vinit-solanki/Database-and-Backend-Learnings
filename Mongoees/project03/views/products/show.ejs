@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= product.name%></title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+        }
+        body {
+            background-color: #e9ecef;
+            margin: 0;
+            padding: 20px;
+        }
+        h1 {
+            color: #343a40;
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 2.5em;
+        }
+        a {
+            text-decoration: none;
+            color: #333;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 20px 0;
+        }
+        li {
+            padding: 10px;
+            background: #fff;
+            margin: 5px 0;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        li:hover {
+            background: #eaeaea;
+        }
+        button {
+            background-color: #28a745;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 18px;
+            transition: background-color 0.3s, transform 0.3s;
+            margin: 10px 0;
+        }
+        button:hover {
+            background-color: #218838;
+            transform: translateY(-2px);
+        }
+        .product-details {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin: 20px 0;
+        }
+        .product-details ul {
+            width: 100%;
+            max-width: 600px;
+        }
+        .product-details li {
+            text-align: left;
+        }
+        .button-container {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1><%= product.name%></h1>
+    <div class="product-details">
+        <ul>
+            <li>Price: <%= product.price%></li>
+            <li>Type: <%= product.category%></li>
+            <li>on Sale: <%= product.onSale%></li>
+            <li>Manufacture Date: <%= product.manufactureDate%></li>
+            <li>Expiration Date: <%= product.expirationDate%></li>
+        </ul>
+    </div>
+    <div class="button-container">
+        <a href="/products/<%= product._id%>/edit">
+            <button>Update Product</button>
+        </a>
+        <form action="/products/<%= product._id%>?_method=DELETE" method="POST">
+            <button type="submit">Delete Product</button>
+        </form>
+    </div>
+    <a href="/products">
+        <button>View Products</button>
+    </a>
+</body>
+</html>

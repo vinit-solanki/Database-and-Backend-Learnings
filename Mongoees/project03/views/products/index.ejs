@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+        }
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #e9ecef;
+            margin: 0;
+            padding: 20px;
+        }
+        h1 {
+            color: #343a40;
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2.5em;
+        }
+        form {
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            margin: auto;
+            transition: transform 0.3s;
+        }
+        form:hover {
+            transform: scale(1.02);
+        }
+        label {
+            display: block;
+            margin: 15px 0 5px;
+            font-weight: bold;
+            color: #495057;
+        }
+        input[type="text"],
+        input[type="number"],
+        input[type="date"],
+        select {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 20px;
+            border: 1px solid #ced4da;
+            border-radius: 5px;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+        input[type="text"]:focus,
+        input[type="number"]:focus,
+        input[type="date"]:focus,
+        select:focus {
+            border-color: #80bdff;
+            box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+            outline: none;
+        }
+        a {
+            text-decoration: none;
+            color: #333;
+        }
+        li {
+            list-style-type: none;
+            padding: 10px;
+            background: #fff;
+            margin: 5px 0;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        li:hover {
+            background: #eaeaea;
+        }
+        button{
+            background-color: #28a745;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 18px;
+            transition: background-color 0.3s, transform 0.3s;
+            width: 100%;
+        }
+        button:hover {
+            background-color: #218838;
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body>
+    <% for(let product of products) {%>
+     <div style="display: flex;">
+         <a href="/products/<%= product.id %>">
+             <li> <%= product.name %> - $<%= product.price%></li>
+            </a>
+            <a href="/products?category=<%=product.category%>"><%=product.category%></a>
+            <form action="/products/<%= product.id %>?_method=DELETE" method="POST">
+                <button type="submit">Delete Product</button>
+            </form>
+        </div>   
+        <% } %>
+        <div>
+            <a href="/product/new">
+                <button>Add A New Product</button>
+            </a>
+        </div>
+</body>
+</html>

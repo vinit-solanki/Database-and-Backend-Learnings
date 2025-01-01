@@ -64,3 +64,7 @@ const main = async () => {
 }
 main();
 
+// Get movie name and rating
+movieSchema.methods.getMovie = function (){
+    return `${this.name} - ${this.rating}`;
+}
